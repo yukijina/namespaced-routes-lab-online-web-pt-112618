@@ -3,10 +3,17 @@ class Song < ActiveRecord::Base
 
   def artist_name
     self.try(:artist).try(:name)
+    #=> @song && @song.artist.name
+    #=> @song ? @song.artist.name : nil
   end
 
   def artist_name=(name)
-    artist = Artist.find_or_create_by(name: name)
-    self.artist = artist
+    #if name.empty?
+       #render "new"
+    #else
+      artist = Artist.find_or_create_by(name: name)
+      self.artist = artist
+    #end
   end
+
 end
