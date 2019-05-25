@@ -30,3 +30,8 @@ module DisplayingAssociationsRailsLab
 end
 
 Rails.application.config.active_record.sqlite3.represent_boolean_as_integer = true
+
+#Rails 5 and above make belogs_to association required by default (when you create song.new, you need artist_id by defult)
+# to make is faulse we need the code below.
+# *or* add optional: ture in models/song.rb
+#Rails.application.config.active_record.belongs_to_required_by_default = false

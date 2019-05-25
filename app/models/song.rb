@@ -1,5 +1,8 @@
 class Song < ActiveRecord::Base
-  belongs_to :artist
+  belongs_to :artist, optional: true
+  # add optional:true here
+  # *or* in config/application.rb file, add Rails.application.config.active_record.belongs_to_required_by_default = false
+
 
   def artist_name
     self.try(:artist).try(:name)
@@ -8,12 +11,8 @@ class Song < ActiveRecord::Base
   end
 
   def artist_name=(name)
-    #if name.empty?
-       #render "new"
-    #else
-      artist = Artist.find_or_create_by(name: name)
+    artist = Artist.find_or_create_by(name: name)
       self.artist = artist
-    #end
   end
 
 end
